@@ -1,1 +1,9 @@
 # 2D-and-3D-colocalization
+
+Both 2D and 3D colocalization code return the total overlap between pixels in both images as a percentage of each others active pixels. 
+
+2D colocalization involves converting both images to 1 for foreground and 0 for background. Images are then added together and any occurance of a 2 would indicate overlaping areas between both of the images. The number of occurances of the number 2 in the added images are then converted to a percent of the total of 1's found in each of the images, separately, before they were added together. 
+
+3D colocalization is very similar to other methods for 3D colocalization inference from 2D images. ImageJ also has software that can do this as well but I wanted to see if I could come up with a way of doing this wihtout reference or knowledge of other softwares. 3D colocalization code assumes that objects that are actually overlapping in 3D space will have similar pixel intensities while those that are not overlapping will have dissimilar pixel intensities. It is a hyperparameter of the 3D colocalization code to choose the preference for how pixel intensity similarity is computed whether that being a gradient (all pixel intensities are scaled between 0 and 1 and the sum of all the pixel intensities in the image is the total actual 3D overlap) or threshold based where images in their raw pixel intensities are subtracted from each other to reveal the difference in pixel intensity at each pixel and then a threshold is placed to determine which intensity subtractions to keep (the lower the subtraction difference, the more likely the objects are colocalizing). 
+
+There is also an additional function that allows the user to compute the difference between the total overlap percentages from 2D to 3D to infer how much overlap information is lost when only using the 2D. 
